@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 ## Author: Lei Sun
 ## Date: 09/12/2011
-## Email: leisuncumt@yahoo.com
 
 ## Goal - To count spliced reads at each splicing site of candidate_isoforms.gtf
 ## Input - ARGV[0] candidate_orf output from longorf.pl
