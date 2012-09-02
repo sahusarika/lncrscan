@@ -8,7 +8,7 @@ lncRScan (long non-coding RNA Scan) is a pipeline consists of five steps for det
  * Step 1 'extract_category'-- extract several categories of transcripts, which may contain lncRNAs. The candidate categories can be 'c'(contained), `i' (a transfrag falling entirely within a reference intron), 'j' (potentially novel isoform), 'o'
 (generic exonic overlap with a reference transcript), 'u' (intergenic transcript) and 'x' (exonic overlap with reference on the opposite strand).
 
-<li>Step 2 'extract_length'-- extract the transcripts having long exonic length (200nt).
+ * Step 2 'extract_length'-- extract the transcripts having long exonic length (200nt).
 
  * Step 3 'extract ORF'-- exclude the assemblies that have long ( 300nt) putative ORF.
 
@@ -29,6 +29,8 @@ Cuffcompare and the classcode is needed for step 1 of lncRScan. If you have a GT
 <blockquote>extract_GTF_class.pl example.gtf lnc_class</blockquote>
    (2) seq2protein.pl -- convert nucleotide sequences to amino acid sequences
 <blockquote>seq2protein.pl example.fa > example.aa.fa</blockquote>
+   (3) extract_long_multi.pl -- extract long(>200) multi-exon RNAs according to a BED file of transcripts
+<blockquote>extract_long_multi.pl example.bed > example_long.bed</blockquote>
 
  * UCSC table browser(http://genome.ucsc.edu/cgi-bin/hgTables?command=start) -- extract BED and FASTA files according to GTF
 
@@ -37,3 +39,5 @@ Cuffcompare and the classcode is needed for step 1 of lncRScan. If you have a GT
  * PhyloCSF(https://github.com/mlin/PhyloCSF/wiki) -- a comparative genomics method for classifying protein-coding and non-coding regions
 
  * Pfam database(http://pfam.sanger.ac.uk/search#tabview=tab1) -- it is a large collection of protein families
+
+ * Bioperl(http://www.bioperl.org/wiki/Main_Page)
