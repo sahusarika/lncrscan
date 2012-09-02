@@ -1,0 +1,29 @@
+#summary An example representing how to use lncRScan
+
+= Introduction =
+
+This is an example representing how to use lncRScan to detect novel lncRNAs
+
+= Input =
+high-confident.gtf -- a GTF file recording high-confident transcripts with classcodes
+
+lnc_class -- a list of classcodes, which may contain lncRNAs
+
+= Steps =
+
+ * extract_category -- extract 3121 transcripts from input GTF file according to the classcodes listed.
+
+   (1) $ extract_GTF_class.pl high-confident.gtf lnc_class (extracted.gtf and extracted_id are generated)
+
+   (2) $ mv extracted.gtf transcripts_1.gtf
+
+ * extract_length -- extract transcripts from transcripts_1.gtf according to length >=200nt
+
+   (1) Get transcripts_1.bed according to transcripts_1.gtf using UCSC table browser
+
+   (2) extract 3094 multi-exon transcript with length >=200nt
+       $ extract_long_multi.pl transcripts_1.bed > transcripts_2.bed
+
+   (3) get transcripts_2.fa according to transcripts_2.bed
+
+ * extract_ORF -- 
