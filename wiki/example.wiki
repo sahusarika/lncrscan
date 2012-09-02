@@ -1,4 +1,4 @@
-#summary An example representing how to use lncRScan
+#summary an example representing how to use lncRScan
 
 = Introduction =
 
@@ -26,4 +26,30 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
 
    (3) get transcripts_2.fa according to transcripts_2.bed
 
- * extract_ORF -- 
+ * extract_ORF -- get IDs of transcripts with ORF length < 300
+
+   (1) get longest ORF length of transcripts_2.fa
+       $ longorf.pl --input transcripts_2.fa > transcripts_2.orf.list
+
+   (2) get 734 transcript ids with length < 300
+       $ awk '($2<300){print $1}' transcripts_2.orf.list > transcripts_3.list
+
+   (3) trim the IDs in transcripts_3.list
+       $ perl -ne '@aa = split(/_/);print $aa[4], "_", $aa[5]' transcripts_3.list > transcripts_3.renamed.list
+
+   (4) extract transcripts from transcripts_1.bed according to transcripts_3.renamed.list
+       $ extract_BED_id.pl transcripts_3.renamed.list transcripts_2.bed > transcripts_3.bed
+
+ * Run PhyloCSF (score<0 or fail)
+
+   (1) Stitch 29 mammalian genome alignment according to transcripts_3.bed using "Stitch MAF blocks"
+
+   (2) Download the 29 mammalian alignments and the BED file from Galaxy
+
+   (3) Modify the species' name in the alignment FASTA file using 29mammals.sh
+       $ 29mammals.sh 29_mammals_aln.fasta > 29_mammals_aln_renamed.fasta
+
+   (4) Create a table connecting transcript_id and its coordinates using
+       $ awk '{print $4"\t"$1"("$6"):"$2"-"$3}' transcripts_3.bed > id-co.table
+
+   (5) 
