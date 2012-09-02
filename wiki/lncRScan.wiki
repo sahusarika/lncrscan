@@ -5,16 +5,16 @@
 lncRScan (long non-coding RNA Scan) is a pipeline consists of five steps for detecting novel long non-coding RNAs from a set of candidate transcripts annotated by Cuffcompare. 
 
 = Steps of lncRScan =
-<li>Step 1 'extract_category'-- extract several categories of transcripts, which may contain lncRNAs. The candidate categories can be 'c'(contained), `i' (a transfrag falling entirely within a reference intron), 'j' (potentially novel isoform), 'o'
+ * Step 1 'extract_category'-- extract several categories of transcripts, which may contain lncRNAs. The candidate categories can be 'c'(contained), `i' (a transfrag falling entirely within a reference intron), 'j' (potentially novel isoform), 'o'
 (generic exonic overlap with a reference transcript), 'u' (intergenic transcript) and 'x' (exonic overlap with reference on the opposite strand).
 
 <li>Step 2 'extract_length'-- extract the transcripts having long exonic length (200nt).
 
-<li>Step 3 'extract ORF'-- exclude the assemblies that have long ( 300nt) putative ORF.
+ * Step 3 'extract ORF'-- exclude the assemblies that have long ( 300nt) putative ORF.
 
-<li>Step 4 'extract PhyloCSF'-- PhyloCSF was recruited to filter the transcripts of protein-coding potential from an evolutionary view.
+ * Step 4 'extract PhyloCSF'-- PhyloCSF was recruited to filter the transcripts of protein-coding potential from an evolutionary view.
 
-<li>Step 5 'extract Pfam'-- exclude transcripts with significant domain hits by searching Pfam.
+ * Step 5 'extract Pfam'-- exclude transcripts with significant domain hits by searching Pfam.
 
 = Input =
 Candidate transcripts -- a GTF file annotated by Cuffcompare of Cufflinks.
@@ -23,11 +23,17 @@ Notes: each transcript in the GTF file has been assigned a classcode defined by
 Cuffcompare and the classcode is needed for step 1 of lncRScan. If you have a GTF without Cuffcompare's annotation, you can just start from step 2.
 
 = Tools used =
-<li>extract_GTF_class.pl -- extract GTF according to classcode list. e.g.
+ * Scripts--
+
+   (1) extract_GTF_class.pl -- extract GTF according to classcode list. e.g.
 <blockquote>extract_GTF_class.pl example.gtf lnc_class</blockquote>
+   (2) seq2protein.pl -- convert nucleotide sequences to amino acid sequences
+<blockquote>seq2protein.pl example.fa > example.aa.fa</blockquote>
 
-<li>UCSC table browser -- extract BED and FASTA files according to GTF
+ * UCSC table browser -- extract BED and FASTA files according to GTF
 
-<li>Galaxy 'Stitch MAF blocks' -- fetch alignments of 29 mammals according to GTF/BED
+ * Galaxy 'Stitch MAF blocks' -- fetch alignments of 29 mammals according to GTF/BED
 
-<li>PhyloCSF -- a comparative genomics method for classifying protein-coding and non-coding regions
+ * PhyloCSF -- a comparative genomics method for classifying protein-coding and non-coding regions
+
+ * Pfam database--it is a large collection of protein families
