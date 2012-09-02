@@ -32,7 +32,7 @@ Cuffcompare and the classcode is needed for step 1 of lncRScan. If you have a GT
 
  * UCSC table browser -- extract BED and FASTA files according to GTF
 
- * Galaxy 'Stitch MAF blocks' -- fetch alignments of 29 mammals according to GTF/BED
+ * [WikiSyntax Galaxy] 'Stitch MAF blocks' -- fetch alignments of 29 mammals according to GTF/BED
 
  * PhyloCSF -- a comparative genomics method for classifying protein-coding and non-coding regions
 
