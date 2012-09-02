@@ -30,10 +30,10 @@ Cuffcompare and the classcode is needed for step 1 of lncRScan. If you have a GT
    (2) seq2protein.pl -- convert nucleotide sequences to amino acid sequences
 <blockquote>seq2protein.pl example.fa > example.aa.fa</blockquote>
 
- * UCSC table browser -- extract BED and FASTA files according to GTF
+ * UCSC table browser(http://genome.ucsc.edu/cgi-bin/hgTables?command=start) -- extract BED and FASTA files according to GTF
 
- * [WikiSyntax Galaxy] 'Stitch MAF blocks' -- fetch alignments of 29 mammals according to GTF/BED
+ * Galaxy(https://main.g2.bx.psu.edu/) 'Stitch MAF blocks' -- fetch alignments of 29 mammals according to GTF/BED
 
- * PhyloCSF -- a comparative genomics method for classifying protein-coding and non-coding regions
+ * PhyloCSF(https://github.com/mlin/PhyloCSF/wiki) -- a comparative genomics method for classifying protein-coding and non-coding regions
 
- * Pfam database--it is a large collection of protein families
+ * Pfam database(http://pfam.sanger.ac.uk/search#tabview=tab1)--it is a large collection of protein families
