@@ -36,4 +36,4 @@ Cuffcompare and the classcode is needed for step 1 of lncRScan. If you have a GT
 
  * PhyloCSF(https://github.com/mlin/PhyloCSF/wiki) -- a comparative genomics method for classifying protein-coding and non-coding regions
 
- * Pfam database(http://pfam.sanger.ac.uk/search#tabview=tab1)--it is a large collection of protein families
+ * Pfam database(http://pfam.sanger.ac.uk/search#tabview=tab1) -- it is a large collection of protein families
