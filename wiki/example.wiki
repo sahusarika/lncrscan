@@ -35,7 +35,7 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
        $ awk '($2<300){print $1}' transcripts_2.orf.list > transcripts_3.list
 
    (3) trim the IDs in transcripts_3.list
-       $ perl -ne '@aa = split(/_/);print $aa[4], "_", $aa[5]' transcripts_3.list > transcripts_3.renamed.list
+       $ perl -ne '@aa = split("\_");print $aa\[4\] , "_", $aa\[5\]' transcripts_3.list > transcripts_3.renamed.list
 
    (4) extract transcripts from transcripts_1.bed according to transcripts_3.renamed.list
        $ extract_BED_id.pl transcripts_3.renamed.list transcripts_2.bed > transcripts_3.bed
@@ -52,4 +52,6 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
    (4) Create a table connecting transcript_id and its coordinates using
        $ awk '{print $4"\t"$1"("$6"):"$2"-"$3}' transcripts_3.bed > id-co.table
 
-   (5) 
+   (5) Separate the file into files, each of which only contains one alignment
+       $ mkdir file_pieces
+       $ pre_phylocsf.pl id-co.table 29_mammals_aln_renamed.fasta
