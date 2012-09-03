@@ -106,4 +106,6 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
 <code>
     $ filter_GTF_isoform.pl transcripts-4.gtf Pfam_significant.renamed.list > transcripts-5.gtf
 </code>
-    The transcripts-5.gtf contains the 319 lncRNA candidates. 
+
+= Input =
+    The remaining transcripts-5.gtf contains the 319 lncRNA candidates. 
