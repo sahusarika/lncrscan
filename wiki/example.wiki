@@ -1,8 +1,9 @@
 #summary an example representing how to use lncRScan
+#labels example
 
 = Introduction =
 
-This is an example representing how to use lncRScan to detect novel lncRNAs
+This is an example representing how to use lncRScan to detect novel lncRNAs.
 
 = Input =
 high-confident.gtf -- a GTF file recording high-confident transcripts with classcodes
