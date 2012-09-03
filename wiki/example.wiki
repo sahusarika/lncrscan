@@ -12,34 +12,40 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
 = Steps =
 
  * extract_category -- extract 3121 transcripts from input GTF file according to the classcodes listed.
-
-   (1) $ extract_GTF_class.pl high-confident.gtf lnc_class (extracted.gtf and extracted_id are generated)
-
-   (2) $ mv extracted.gtf transcripts_1.gtf
-
+<code>
+   $ extract_GTF_class.pl high-confident.gtf lnc_class (extracted.gtf and extracted_id are generated)
+   $ mv extracted.gtf transcripts_1.gtf
+</code>
  * extract_length -- extract transcripts from transcripts_1.gtf according to length >=200nt
 
    (1) Get transcripts_1.bed according to transcripts_1.gtf using UCSC table browser
 
    (2) extract 3094 multi-exon transcript with length >=200nt
-       $ extract_long_multi.pl transcripts_1.bed > transcripts_2.bed
-
+<code>
+    $ extract_long_multi.pl transcripts_1.bed > transcripts_2.bed
+</code>
    (3) get transcripts_2.fa according to transcripts_2.bed
 
  * extract_ORF -- get IDs of transcripts with ORF length < 300
 
    (1) get longest ORF length of transcripts_2.fa
-       $ longorf.pl --input transcripts_2.fa > transcripts_2.orf.list
+<code>
+    $ longorf.pl --input transcripts_2.fa > transcripts_2.orf.list
+</code>
 
    (2) get 734 transcript ids with length < 300
-       $ awk '($2<300){print $1}' transcripts_2.orf.list > transcripts_3.list
+<code>
+    $ awk '($2<300){print $1}' transcripts_2.orf.list > transcripts_3.list
+</code>
 
    (3) trim the IDs in transcripts_3.list
-       $ perl -ne '@aa = split("\_");print $aa\[4\] , "_", $aa\[5\]' transcripts_3.list > transcripts_3.renamed.list
-
+<code>
+    $ perl -ne '@aa = split(/_/);print $aa[4] , "_", $aa[5]' transcripts_3.list > transcripts_3.renamed.list
+</code>
    (4) extract transcripts from transcripts_1.bed according to transcripts_3.renamed.list
-       $ extract_BED_id.pl transcripts_3.renamed.list transcripts_2.bed > transcripts_3.bed
-
+<code>
+    $ extract_BED_id.pl transcripts_3.renamed.list transcripts_2.bed > transcripts_3.bed
+</code>
  * Run PhyloCSF (score<0 or fail)
 
    (1) Stitch 29 mammalian genome alignment according to transcripts_3.bed using "Stitch MAF blocks"
@@ -47,11 +53,57 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
    (2) Download the 29 mammalian alignments and the BED file from Galaxy
 
    (3) Modify the species' name in the alignment FASTA file using 29mammals.sh
-       $ 29mammals.sh 29_mammals_aln.fasta > 29_mammals_aln_renamed.fasta
-
+<code>
+    $ 29mammals.sh 29_mammals_aln.fasta > 29_mammals_aln_renamed.fasta
+</code>
    (4) Create a table connecting transcript_id and its coordinates using
-       $ awk '{print $4"\t"$1"("$6"):"$2"-"$3}' transcripts_3.bed > id-co.table
+<code>
+    $ awk '{print $4"\t"$1"("$6"):"$2"-"$3}' transcripts_3.bed > id-co.table
+</code>
+   (5) Separate 29_mammals_aln_renamed.fasta into files, each of which only contains one alignment
+<code>
+    $ mkdir file_pieces
+    $ pre_phylocsf.pl id-co.table 29_mammals_aln_renamed.fasta
+</code>
+   (6) Run PhyloCSF, which will output phylocsf.out
+<code>
+    $ nohup phylocsf.pl &
+</code>
+   (7) Parse the output of the above command and get a new list of 419 lncRNAs
+<code>
+    $ parse_phylocsf_output.pl phylocsf.out > transcripts-4.list
+</code>
+   (8) extract transcripts-4.gtf according to transcripts-4.list
+<code>
+    $ extract_GTF_isoform.pl transcripts-1.gtf transcripts-4.list > transcripts-4.gtf
+</code>
 
-   (5) Separate the file into files, each of which only contains one alignment
-       $ mkdir file_pieces
-       $ pre_phylocsf.pl id-co.table 29_mammals_aln_renamed.fasta
+ * Search Pfam 
+   (1) get the BED file listed in the lncRNAs_PhyloCSF.list
+<code>
+    $ extract_BED_id.pl transcripts-4.list RefSeq_all.orf_l300.bed > transcripts-4.bed
+</code>
+   (2) get transcripts-4.fa from UCSC according to transcripts-4.bed
+
+   (3) translate the nucleitide sequences into amino acid sequences
+<code>
+    $ seq2protein.pl transcripts-4.fa > transcripts-4.aa.fa
+</code>
+
+   (4) search the transcripts-4.aa.fa in Pfam and get results of Pfam search by email. 
+
+   (5) store the results of Pfam search in Pfam.results 
+
+   (6) get a list of ids with significant Pfam results
+<code>
+    $ awk '($14==1){print $1}' Pfam.results | uniq >  Pfam_significant.list
+</code>
+    (7) rename the IDs in list
+<code>
+    $ perl -ne '@aa = split(/_/);print $aa[4] , "_", $aa[5]' Pfam_significant.list > Pfam_significant.renamed.list
+</code>
+    (8) exclude the transcripts listed in Pfam_significant.list
+<code>
+    $ filter_GTF_isoform.pl transcripts-4.gtf Pfam_significant.renamed.list > transcripts-5.gtf
+</code>
+    The transcripts-5.gtf contains the 319 lncRNA candidates. 
