@@ -26,11 +26,44 @@ Cuffcompare and the classcode is needed for step 1 of lncRScan. If you have a GT
  * Scripts--
 
    (1) extract_GTF_class.pl -- extract GTF according to classcode list. e.g.
-<blockquote>extract_GTF_class.pl example.gtf lnc_class</blockquote>
-   (2) seq2protein.pl -- convert nucleotide sequences to amino acid sequences
-<blockquote>seq2protein.pl example.fa > example.aa.fa</blockquote>
-   (3) extract_long_multi.pl -- extract long(>200) multi-exon RNAs according to a BED file of transcripts
-<blockquote>extract_long_multi.pl example.bed > example_long.bed</blockquote>
+
+       <code>$ extract_GTF_class.pl example.gtf lnc_class</code>
+
+   (2) seq2protein.pl -- convert nucleotide sequences to amino acid sequences. e.g.
+
+       <code>$ seq2protein.pl example.fa > example.aa.fa</code>
+
+   (3) extract_long_multi.pl -- extract long(>200) multi-exon RNAs according to a BED file of transcripts. e.g.
+
+       <code>$ extract_long_multi.pl example.bed > example_long.bed</code>
+
+   (4) 29mammals.sh -- change the names of 29mammal alignment downloaded from Galaxy
+
+       <code>$ 29mammals.sh example_aln.fasta > example_aln_renamed.fasta</code>
+
+   (5) extract_BED_id.pl -- extract transcript information in BED file according to a gene id list. e.g.
+
+       <code>$ extract_BED_id.pl example_list example.bed > example_extracted.bed</code>
+
+   (6) filter_GTF_isoform.pl -- filter transcripts of a GTF annotated by cuffcompare according to transcript ids if they exist
+
+       <code>$ filter_GTF_isoform.pl example.gtf for_filtered.list > remaining.gtf</code>
+
+   (7) longorf.pl -- get the longest ORF length of each transcript. This script is  modified from longorf.pl written by Dan Kortschak
+
+       <code>$ longorf.pl --input example.fa > example.orf.list</code>
+
+   (8) parse_phylocsf_output.pl -- Get noncoding transcripts by parsing test results of PhyloCSF, based on the set of FASTA alignments
+
+       <code>$ parse_phylocsf_output.pl phylocsf.out > transcripts-4.list</code>
+
+   (9) phylocsf.pl -- run PhyloCSF Batch
+
+       <code>nohup phylocsf.pl &</code>
+
+   (10) pre_phylocsf -- cut the fasta alignments into several single alignments
+
+       <code>$ pre_phylocsf.pl id-co.table 29_mammals_aln_renamed.fasta</code>
 
  * UCSC table browser(http://genome.ucsc.edu/cgi-bin/hgTables?command=start) -- extract BED and FASTA files according to GTF
 
