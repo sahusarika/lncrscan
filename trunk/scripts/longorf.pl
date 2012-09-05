@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 # longorf.pl v0208020920
 # (c) Dan Kortschak 2002
-# modified by Lei Sun, 2011
 
 use vars qw($USAGE);
 
