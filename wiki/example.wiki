@@ -68,6 +68,7 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
 </code>
    (6) Run PhyloCSF, which will output phylocsf.out
 <code>
+    $ ln -s PATH_TO_PHYLOCSF/PhyloCSF_Parameters .
     $ nohup phylocsf.pl &
 </code>
    (7) Parse the output of the above command and get a new list of 419 lncRNAs
