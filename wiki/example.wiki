@@ -41,7 +41,7 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
 
    (3) trim the IDs in transcripts_3.list
 <code>
-    $ perl -ne '@aa = split(/_/);print $aa[4] , "_", $aa[5]' transcripts_3.list > transcripts_3.renamed.list
+    $ perl -ne '@aa = split(/_/);print $aa[4]; for($i=5;$i<scalar(@aa);$i++){print "_", $aa[$i]}' transcripts_3.list > transcripts_3.renamed.list
 </code>
    (4) extract transcripts from transcripts_1.bed according to transcripts_3.renamed.list
 <code>
