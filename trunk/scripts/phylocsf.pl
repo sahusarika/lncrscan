@@ -4,5 +4,5 @@
 
 my @AllFiles=<./file_pieces/*>;
 foreach my $onefile(@AllFiles){
-  system("PhyloCSF 29mammals $onefile --orf=ATGStop --frames=3 --removeRefGaps --aa >> phylocsf.out");
+  system("./PhyloCSF 29mammals $onefile --orf=ATGStop --frames=3 --removeRefGaps --aa >> phylocsf.out");
 }
