@@ -72,7 +72,7 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
     $ ln -s PATH_TO_PHYLOCSF/PhyloCSF_Parameters .
     $ ln -s PATH_TO_PHYLOCSF/bin .
     $ ln -s PATH_TO_PHYLOCSF/share .
-    $ nohup phylocsf.pl &
+    $ nohup ./phylocsf.pl &
 </code>
    (7) Parse the output of the above command and get a new list of 419 lncRNAs
 <code>
