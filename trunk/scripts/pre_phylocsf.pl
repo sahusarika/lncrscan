@@ -1,6 +1,7 @@
 #!/usr/bin/perl
 ## Author: Lei Sun
-## Date: 11/04/2012
+## Date: 2012/10.06
+## Email: leisuncumt@yahoo.com
 
 ## Goal - Cut the fasta alignments into several single alignments
 ## Input - 1) id-co.table; 2) FASTA alignments 
@@ -23,13 +24,11 @@ while(my $current_line=<TAB>){
 	{
 		$table{$fields_line[1]} = $fields_line[0];
 	}
-=head
 	elsif(exists $table{$fields_line[1]})
 	{
-		print $table{$fields_line[1]}, "\n";
-		print $current_line, "\n\n";
+		# for storing ids located at the same loci
+		$table{$fields_line[1]} = $table{$fields_line[1]}.";".$fields_line[0];
 	}
-=cut
 }
 close(TAB);
 
@@ -37,6 +36,7 @@ close(TAB);
 # scan the FASTA alignments
 $line_count=0;
 my $current_file;
+my @table_ids;
 open(FA, $ARGV[1]) || die "Could not read from argv[0], program halting.";
 while(my $current_line=<FA>){
 	chomp($current_line);
@@ -53,14 +53,18 @@ while(my $current_line=<FA>){
     	#print "$id_line[1]\n";
     	if(exists $table{$id_line[1]})
     	{
-    		#print $id_line[1],"\n";
-    		$current_file = "file_pieces/".$table{$id_line[1]};
-    		system("echo '$current_line' > $current_file");
-
+    		@table_ids = split(/;/, $table{$id_line[1]});
+    		foreach(@table_ids){
+    			$current_file = "file_pieces/".$_;
+    			system("echo '$current_line' > $current_file");
+    		}
     	}
     	next;
     }
     
-    system ("echo '$current_line' >> $current_file");
+    foreach(@table_ids){
+    	$current_file = "file_pieces/".$_;
+    	system ("echo '$current_line' >> $current_file");
+    }
 }
 close(FA);
