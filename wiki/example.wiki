@@ -84,30 +84,26 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
 </code>
 
  * Search Pfam 
-   (1) get the BED file listed in the lncRNAs_PhyloCSF.list
-<code>
-    $ extract_BED_id.pl transcripts-4.list RefSeq_all.orf_l300.bed > transcripts-4.bed
-</code>
-   (2) get transcripts-4.fa from UCSC according to transcripts-4.bed
+   (1) get transcripts-4.fa from UCSC according to transcripts-4.gtf
 
-   (3) translate the nucleitide sequences into amino acid sequences
+   (2) translate the nucleitide sequences into amino acid sequences
 <code>
     $ seq2protein.pl transcripts-4.fa > transcripts-4.aa.fa
 </code>
 
-   (4) search the transcripts-4.aa.fa in Pfam and get results of Pfam search by email. 
+   (3) search the transcripts-4.aa.fa in Pfam and get results of Pfam search by email. 
 
-   (5) store the results of Pfam search in Pfam.results 
+   (4) store the results of Pfam search in Pfam.results 
 
-   (6) get a list of ids with significant Pfam results
+   (5) get a list of ids with significant Pfam results
 <code>
     $ awk '($14==1){print $1}' Pfam.results | uniq >  Pfam_significant.list
 </code>
-    (7) rename the IDs in list
+    (6) rename the IDs in list
 <code>
     $ perl -ne '@aa = split(/_/);print $aa[4] , "_", $aa[5]' Pfam_significant.list > Pfam_significant.renamed.list
 </code>
-    (8) exclude the transcripts listed in Pfam_significant.list
+    (7) exclude the transcripts listed in Pfam_significant.list
 <code>
     $ filter_GTF_isoform.pl transcripts-4.gtf Pfam_significant.renamed.list > transcripts-5.gtf
 </code>
