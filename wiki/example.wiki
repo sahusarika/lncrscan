@@ -101,7 +101,7 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
 </code>
     (6) rename the IDs in list
 <code>
-    $ perl -ne '@aa = split(/_/);print $aa[4] , "_", $aa[5]' Pfam_significant.list > Pfam_significant.renamed.list
+    $ perl -ne '@aa = split(/[_-]/);print $aa[4] , "_", $aa[5],"\n"' Pfam_significant.list | uniq > Pfam_significant.renamed.list
 </code>
     (7) exclude the transcripts listed in Pfam_significant.list
 <code>
