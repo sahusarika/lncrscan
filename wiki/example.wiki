@@ -74,7 +74,7 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
     $ ln -s PATH_TO_PHYLOCSF/share .
     $ nohup ./phylocsf.pl &
 </code>
-   (7) Parse the output of the above command and get a new list of 382 lncRNAs
+   (7) Parse the output of the command above and get a new list of 382 transcripts
 <code>
     $ parse_phylocsf_output.pl phylocsf.out > transcripts-4.list
 </code>
