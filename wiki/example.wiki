@@ -6,22 +6,22 @@
 This is an example representing how to use lncRScan to detect novel lncRNAs.
 
 = Input =
-high-confident.gtf -- a GTF file recording high-confident transcripts with classcodes
+high-confident.gtf -- a GTF file recording high-quality assemblies with classcodes
 
 lnc_class -- a list of classcodes, which may contain lncRNAs
 
 = Steps =
 
- * extract_category -- extract 3121 transcripts from input GTF file according to the classcodes listed.
+ * extract_category -- extract 3287 transcripts from input GTF file according to the classcodes listed.
 <code>
-   $ extract_GTF_class.pl high-confident.gtf lnc_class (extracted.gtf and extracted_id are generated)
+   $ extract_GTF_class.pl high-confident.gtf lnc_class (then extracted.gtf and extracted_id are generated)
    $ mv extracted.gtf transcripts_1.gtf
 </code>
- * extract_length -- extract transcripts from transcripts_1.gtf according to length >=200nt
+ * extract_length -- extract transcripts from transcripts_1.gtf according to length > 200nt
 
    (1) Get transcripts_1.bed according to transcripts_1.gtf using UCSC table browser
 
-   (2) extract 3094 multi-exon transcript with length >=200nt
+   (2) extract 3247 multi-exon transcript with length > 200nt
 <code>
     $ extract_long_multi.pl transcripts_1.bed > transcripts_2.bed
 </code>
@@ -34,7 +34,7 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
     $ longorf.pl --input transcripts_2.fa > transcripts_2.orf.list
 </code>
 
-   (2) get 734 transcript ids with length < 300
+   (2) get 731 transcript ids with length < 300
 <code>
     $ awk '($2<300){print $1}' transcripts_2.orf.list > transcripts_3.list
 </code>
@@ -74,7 +74,7 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
     $ ln -s PATH_TO_PHYLOCSF/share .
     $ nohup ./phylocsf.pl &
 </code>
-   (7) Parse the output of the above command and get a new list of 419 lncRNAs
+   (7) Parse the output of the above command and get a new list of 382 lncRNAs
 <code>
     $ parse_phylocsf_output.pl phylocsf.out > transcripts-4.list
 </code>
@@ -109,4 +109,4 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
 </code>
 
 = Output =
-    The remaining transcripts-5.gtf contains the 319 lncRNA candidates. 
+    The remaining transcripts-5.gtf contains the 308 lncRNA candidates. 
