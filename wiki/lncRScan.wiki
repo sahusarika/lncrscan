@@ -5,12 +5,12 @@
 lncRScan (long non-coding RNA Scan) is a pipeline consists of five steps for detecting novel long non-coding RNAs from a set of candidate transcripts annotated by Cuffcompare. 
 
 = Steps of lncRScan =
- * Step 1 'extract_category'-- extract several categories of transcripts, which may contain lncRNAs. The candidate categories can be 'c'(contained), `i' (a transfrag falling entirely within a reference intron), 'j' (potentially novel isoform), 'o'
+ * Step 1 'extract_category'-- extract several categories of transcripts, which may contain lncRNAs. The candidate categories can be `i' (a transfrag falling entirely within a reference intron), 'j' (potentially novel isoform), 'o'
 (generic exonic overlap with a reference transcript), 'u' (intergenic transcript) and 'x' (exonic overlap with reference on the opposite strand).
 
- * Step 2 'extract_length'-- extract the transcripts having long exonic length (200nt).
+ * Step 2 'extract_length'-- extract the transcripts having long exonic length (> 200nt).
 
- * Step 3 'extract ORF'-- exclude the assemblies that have long ( 300nt) putative ORF.
+ * Step 3 'extract ORF'-- exclude the assemblies that have long (>= 300nt) putative ORF.
 
  * Step 4 'extract PhyloCSF'-- PhyloCSF was recruited to filter the transcripts of protein-coding potential from an evolutionary view.
 
