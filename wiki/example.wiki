@@ -51,6 +51,13 @@ lnc_class -- a list of classcodes, which may contain lncRNAs
 
    (1) Stitch 29 mammalian genome alignment according to transcripts_3.bed using "Stitch MAF blocks"
 
+   -- Upload the BED file to Galaxy;
+   -- On Galaxy, choose "Fetch Alignments" --> "Stitch MAF blocks";
+   -- On the page of Stitch MAF blocks (version 1.0.1), click before the 
+     29 species that will be included in final alignment and leave other 
+     parameters default.
+   -- Click "Execute" and the final alignment will be put in your storage on Galaxy.
+
    (2) Download the 29 mammalian alignments and the BED file from Galaxy
 
    (3) Modify the species' name in the alignment FASTA file using 29mammals.sh
