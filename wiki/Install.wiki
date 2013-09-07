@@ -20,6 +20,7 @@ svn checkout http://lncrscan.googlecode.com/svn/trunk/ lncrscan-read-only
 <code>
 export PATH=$PATH:/MY_DIR/scripts
 export PERL5LIB=$PERL5LIB:/MY_DIR/lib
+source .bashrc
 </code>
 
 <li>Make all scripts executable by 
