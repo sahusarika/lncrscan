@@ -11,7 +11,7 @@ Unix/Linux
 
 <li>Download "lncrscan" which contains three folders to your home directory _MY_DIR_.
 
-<li>Set environmental variables on you OS by modifying _.bashrc_
+<li>Set environmental variables on your OS by modifying _.bashrc_
 
 <code>
 export PATH=$PATH:/MY_DIR/bin
@@ -23,6 +23,4 @@ export PERL5LIB=$PERL5LIB:/MY_DIR/lib
 <code>
 chmod 0775 /MY_DIR/bin/*
 </code>
-
-
 
