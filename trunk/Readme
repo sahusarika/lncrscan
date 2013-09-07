@@ -17,12 +17,13 @@ Step 5 'extract Pfam'-- exclude transcripts with significant domain hits by sear
 1) OS requirement - Unix/Linux
 
 2) Steps
-   -- Download "lncrscan" which contains three folders to your home directory MY_DIR.
+   -- Download "lncrscan" which contains three folders to your home directory MY_DIR (e.g. YOUR_DIR/lncrscan-read-only).
+      $ svn checkout http://lncrscan.googlecode.com/svn/trunk/ lncrscan-read-only
    -- Set environmental variables on you OS by modifying .bashrc
-      $ export PATH=$PATH:/MY_DIR/bin
+      $ export PATH=$PATH:/MY_DIR/scripts
       $ export PERL5LIB=$PERL5LIB:/MY_DIR/lib
  
    -- Make all scripts executable by
-      $ chmod 0775 /MY_DIR/bin/*
+      $ chmod 0775 /MY_DIR/script/*
       
 ================================================================================================
