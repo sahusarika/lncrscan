@@ -18,12 +18,12 @@ svn checkout http://lncrscan.googlecode.com/svn/trunk/ lncrscan-read-only
 <li>Set environmental variables on your OS by modifying _.bashrc_
 
 <code>
-export PATH=$PATH:/MY_DIR/bin
+export PATH=$PATH:/MY_DIR/scripts
 export PERL5LIB=$PERL5LIB:/MY_DIR/lib
 </code>
 
 <li>Make all scripts executable by 
 
 <code>
-chmod 0775 /MY_DIR/bin/*
+chmod 0775 /MY_DIR/scripts/*
 </code>
