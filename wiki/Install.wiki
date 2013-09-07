@@ -12,7 +12,7 @@ Unix/Linux
 <li>Download "lncrscan" which contains three folders to your home directory _MY_DIR_.
 
 <code>
-svn checkout http://lncrscan.googlecode.com/svn/trunk/ lncrscan-read-only
+$ svn checkout http://lncrscan.googlecode.com/svn/trunk/ lncrscan-read-only
 </code>
 
 <li>Set environmental variables on your OS by modifying _.bashrc_
@@ -20,11 +20,15 @@ svn checkout http://lncrscan.googlecode.com/svn/trunk/ lncrscan-read-only
 <code>
 export PATH=$PATH:/MY_DIR/scripts
 export PERL5LIB=$PERL5LIB:/MY_DIR/lib
-source .bashrc
+</code>
+
+<li> Use the new environmental variables
+<code>
+$ source .bashrc
 </code>
 
 <li>Make all scripts executable by 
 
 <code>
-chmod 0775 /MY_DIR/scripts/*
+$ chmod 0775 /MY_DIR/scripts/*
 </code>
