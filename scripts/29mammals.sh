@@ -36,3 +36,4 @@ sed -e $str1 -e $str2 -e $str3 -e $str4 -e $str5 -e $str6 -e $str7 -e $str8 -e $
 -e $str11 -e $str12 -e $str13 -e $str14 -e $str15 -e $str16 -e $str17 -e $str18 -e $str19 -e $str20 \
 -e $str21 -e $str22 -e $str23 -e $str24 -e $str25 -e $str26 -e $str27 -e $str28 -e $str29 \
 $1
+
