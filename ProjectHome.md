@@ -1,0 +1,1 @@
+lncRScan (long non-coding RNA Scan) is a pipeline consists of five steps for detecting novel long non-coding RNAs from a set of candidate transcripts annotated by Cuffcompare.
